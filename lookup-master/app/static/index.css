@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center; /* Center text in the body */
+    background-color: rgba(0, 0, 0, 0.7); /* Translucent black background */
+    color: white; /* White text color for readability */
+    margin: 0;
+    padding: 20px;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+.lookup-form {
+    margin: 20px 0;
+}
+
+#lookup-input {
+    padding: 10px;
+    font-size: 1em;
+    width: 300px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 20px;
+    text-align: left; /* Reset text alignment for container content */
+}
+
+.row {
+    width: 80%; /* Adjust width as needed */
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 12px #aaa;
+    word-wrap: break-word; /* Ensures long words break to fit within the row */
+    white-space: pre-wrap; /* Preserves whitespace and line breaks */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.row h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 0; /* Remove default margin */
+    margin-bottom: 10px;
+}

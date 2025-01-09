@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
+    <title>Lookup Master</title>
+  </head>
+
+  <body>
+    <h1 class="title">Lookup Master</h1>
+    <form id="send-form" class="lookup-form">
+      <input type="text" id="lookup-input" placeholder="Enter domain" />
+      <button type="submit">Go !</button>
+    </form>
+    <div class="container">
+      <div class="row" id="result1" hidden>
+        <h2>DNS</h2>
+      </div>
+      <div class="row" id="result2" hidden>
+        <h2>Whois</h2>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      document
+        .getElementById("send-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const formData = {
+            domain: document.getElementById("lookup-input").value,
+          };
+
+          $.ajax({
+            url: "/whois-dns",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(formData),
+            success: function (data) {
+              console.log(data.domain);
+              console.log(data.query_results.dns);
+              console.log(data.query_results.whois);
+
+              var result1div = $("#result1");
+              result1div.empty();
+              $("#result1").removeAttr("hidden");
+              result1div.append("<h2>DNS Records</h2>");
+              for (const [key, value] of Object.entries(
+                data.query_results.dns
+              )) {
+                result1div.append(`<p><b style="color:#FFC0CB">${key}</b>: ${value}</p>`);
+              }
+
+              var result2div = $("#result2");
+              result2div.empty();
+              $("#result2").removeAttr("hidden");
+              result2div.append("<h2>Whois</h2>");
+              for (const [key, value] of Object.entries(
+                data.query_results.whois
+              )) {
+                result2div.append(`<p><b style="color:#FFC0CB">${key}</b>: ${value}</p>`);
+              }
+            },
+            error: function (error) {
+              console.error("Error:", error);
+            },
+          });
+        });
+    </script>
+  </body>
+</html>
