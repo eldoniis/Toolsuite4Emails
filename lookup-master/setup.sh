@@ -2,7 +2,7 @@
 python -m venv venv
 
 # Activate virtual enviroment
-.\venv\Scripts\Activate.ps1
+./venv/bin/ActivateActivate
 
 # Install requirements
 pip install -r requirements.txt
